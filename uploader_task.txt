@@ -1,0 +1,1 @@
+compote component upload --namespace ronny-antoon --name 
