@@ -12,7 +12,7 @@ extern "C" void app_main()
     esp_matter::node::config_t node_config;
 
     // node handle can be used to add/modify other endpoints.
-    esp_matter::node_t *node = esp_matter::node::create(&node_config, app_attribute_update_cb, app_identification_cb);
+    esp_matter::node_t *node = esp_matter::node::create(&node_config, app_attribute_ update_cb, app_identification_cb);
 
     esp_matter::endpoint::on_off_light::config_t on_off_light_config;
     esp_matter::endpoint::on_off_light::create(node, &on_off_light_config, esp_matter::endpoint_flags::ENDPOINT_FLAG_NONE, nullptr);
@@ -26,5 +26,5 @@ extern "C" void app_main()
     metric_tracker_auto_send(30, true, true);
 
     LightAccessory *lightAccessory = new LightAccessory(GPIO_NUM_5, GPIO_NUM_2);
-    ESP_LOGI(__FILENAME__, "LightAccessory created");
+    ESP_LOGI(__FILENAME__, "LightAccessory created.");
 }
