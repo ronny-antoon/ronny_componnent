@@ -1,21 +1,24 @@
 #include "metric_tracker.hpp"
 
-#include "wifi_setup.hpp"
+#include "matter_setup.hpp"
 #include "lightAccessory.hpp"
 
 extern "C" void app_main()
 {
-    // Initialize NVS
-    esp_err_t ret = nvs_flash_init();
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
-    {
-        ESP_ERROR_CHECK(nvs_flash_erase());
-        ret = nvs_flash_init();
-    }
-    ESP_ERROR_CHECK(ret);
+    /* Initialize the ESP NVS layer */
+    nvs_flash_init();
 
-    ESP_LOGI(__FILENAME__, "ESP_WIFI_MODE_STA");
-    wifi_init_sta();
+    /* Create a Matter node and add the mandatory Root Node device type on endpoint 0 */
+    esp_matter::node::config_t node_config;
+
+    // node handle can be used to add/modify other endpoints.
+    esp_matter::node_t *node = esp_matter::node::create(&node_config, app_attribute_update_cb, app_identification_cb);
+
+    esp_matter::endpoint::on_off_light::config_t on_off_light_config;
+    esp_matter::endpoint::on_off_light::create(node, &on_off_light_config, esp_matter::endpoint_flags::ENDPOINT_FLAG_NONE, nullptr);
+
+    /* Matter start */
+    esp_matter::start(app_event_cb);
 
     metric_tracker_init("http://192.168.3.196:3001/metrics", "DevKitModule", 800);
 
