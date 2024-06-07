@@ -1,13 +1,13 @@
 dependencies:
-  ronny-antoon/metahouse:
-    version: "^0.0.1"
+  ronny-antoon/mh_matter:
+    version: "*"
     require: "private"
   ronny-antoon/metric_tracker:
-    version: "^0.0.9"
+    version: "*"
     require: "private"
   ronny-antoon/accessories:
-    version: "^0.0.1"
+    version: "*"
     require: "private"
   idf: ">=4.1.0"
   espressif/esp_matter:
-    version: "^0.0.2"
+    version: "0.0.2"

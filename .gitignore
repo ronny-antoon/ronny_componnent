@@ -4,3 +4,5 @@ dist/*
 .vscode/*
 managed_components/*
 build/*
+components
+components/*
