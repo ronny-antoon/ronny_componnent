@@ -1,8 +1,7 @@
 dependencies.lock
 sdkconfig
-dist/*
-.vscode/*
-managed_components/*
-build/*
+dist
+.vscode
+managed_components
+build
 components
-components/*

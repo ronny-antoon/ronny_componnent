@@ -1,5 +1,5 @@
 dependencies:
-  ronny-antoon/mh_matter:
+  ronny-antoon/MetaHouseDevice:
     version: "*"
     require: "private"
   ronny-antoon/metric_tracker:
