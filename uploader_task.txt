@@ -2,3 +2,5 @@ compote component upload --namespace ronny-antoon --name accessories
 compote component upload --namespace ronny-antoon --name mh_matter
 compote component upload --namespace ronny-antoon --name metric_tracker
 compote component upload --namespace ronny-antoon --name on_error
+compote component upload --namespace ronny-antoon --name IO_MetaHouse
+compote component upload --namespace ronny-antoon --name MetaHouseAccessories
