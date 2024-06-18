@@ -8,3 +8,6 @@ dependencies:
   ronny-antoon/metric_tracker:
     version: "*"
     require: "public"
+  AccessPoint:
+    version: "*"
+    require: "public"

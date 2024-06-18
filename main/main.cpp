@@ -6,12 +6,35 @@
 #include <LightDevice.hpp>
 #include <RelayModule.hpp>
 
+#include "accesspoint.hpp"
 #include "app_callback.hpp"
+#include "database_helper.hpp"
 #include "metric_tracker.hpp"
+#include "myConfig.hpp"
+#include "webserver.hpp"
 
 extern "C" void app_main() {
   /* Initialize the ESP NVS layer */
   nvs_flash_init();
+
+  /* Check if the device is in ProgramMode */
+  if (checkProgramMode()) {
+    // If the device is in ProgramMode, start the program mode
+    ESP_LOGI(__FILENAME__, "Starting Program Mode");
+
+    // Init access point
+    metahouse::accesspoint::init_accesspoint();
+
+    /* Start the webserver */
+    httpd_handle_t server = metahouse::accesspoint::webserver::start_webserver();
+    if (server == NULL) {
+      ESP_LOGE(__FILENAME__, "Failed to start the webserver");
+      return;
+    }
+    ESP_LOGI(__FILENAME__, "Webserver started on port: %d", M_WEB_PORT);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    return;
+  }
 
   /* Initialize the Matter stack */
   esp_matter::node::config_t node_config;
