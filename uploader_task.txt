@@ -4,3 +4,4 @@ compote component upload --namespace ronny-antoon --name metric_tracker
 compote component upload --namespace ronny-antoon --name on_error
 compote component upload --namespace ronny-antoon --name IO_MetaHouse
 compote component upload --namespace ronny-antoon --name MetaHouseAccessories
+compote component upload --namespace ronny-antoon --name MatterDevices
